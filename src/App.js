@@ -19,18 +19,19 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          <AppContext.Provider value={[log, setLog]}>
+        <AppContext.Provider value={[log, setLog]}>
+          <Routes>
+            <Route path="/" element={<Login />} />
             <Route path="/protected" element={<Protected />} />
             <Route path="/login" element={<Login />} />
-            <Route exact path="/forgotpassword" element={<ForgotPass />} />
-            <Route exact path="/register" element={<Register />} />
+            <Route path="/forgotpassword" element={<ForgotPass />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/resetpassword/:id/:token" element={<ChangePass />} />
-            <Route exact path="/">
+            {/* <Route  path="/">
               <Navigate to="/login" />
-            </Route>
-          </AppContext.Provider>
-        </Routes>
+            </Route> */}
+          </Routes>
+        </AppContext.Provider>
       </Router>
     </div>
   );

@@ -10,8 +10,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 function Login() {
+  console.log("in login");
   const navigate = useNavigate();
   const [log, setLog] = useContext(AppContext);
+  console.log('log :>> ', log);
 
   //send login
   const sendLogin = async (values) => {
@@ -22,7 +24,7 @@ function Login() {
         password: values.password,
       }
     );
-    console.log(response);
+    console.log("response", response);
 
     if (response.status === 200) {
       window.localStorage.setItem("auth-token", response.data.token);
@@ -59,17 +61,17 @@ function Login() {
               validationSchema={signInSchema}
               onSubmit={async (values) => {
                 console.log(values);
-                let reset = await sendLogin(values); //if status 200 returns true; else false
+                let isAccess = await sendLogin(values); //if status 200 returns true; else false
 
-                console.log(reset); //true or
+                console.log(isAccess); //true or
 
-                if (reset) {
-                  console.log(log); //default false;
+                if (isAccess) {
+                  // console.log(log); //default false;
                   setLog(true); //now true
                   navigate("/protected");
                 } else {
                   console.log("else in");
-                  navigate("/protected");
+                  navigate("/register");
                 }
               }}
             >

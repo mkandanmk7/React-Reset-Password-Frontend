@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AppContext } from "../../App";
 
 function Protected() {
-  const [log] = useContext(AppContext);
+  const [log] = useContext(AppContext)
 
   return (
     <>
